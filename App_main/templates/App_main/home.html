@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4 text-center">
+            <h2>Your Resume</h2>
+            <!-- Your resume content goes here -->
+        </div>
+        <div class="col-4 text-center">
+            <h2>Application Post</h2>
+            <!-- Your application post content goes here -->
+        </div>
+        <div class="col-4 text-center">
+            <h2>Customized Resume</h2>
+            <!-- Your application post content goes here -->
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Generate Customized Resume</button>
+    </form>
+
+    {% if user_profile.customized_resume %}
+    <div>
+        <h3>Customized Resume:</h3>
+        <p>{{ user_profile.customized_resume }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
